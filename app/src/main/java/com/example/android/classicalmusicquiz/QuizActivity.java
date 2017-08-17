@@ -35,6 +35,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -83,6 +84,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
 
         // Initialize the player view.
+        ImageView composerView = (ImageView) findViewById(R.id.composerView);
         mPlayerView = (SimpleExoPlayerView) findViewById(R.id.playerView);
 
 
@@ -105,6 +107,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         mQuestionSampleIDs = QuizUtils.generateQuestion(mRemainingSampleIDs);
         mAnswerSampleID = QuizUtils.getCorrectAnswerID(mQuestionSampleIDs);
 
+        composerView.setImageBitmap(Sample.getComposerArtBySampleID(this, mAnswerSampleID));
         // Load the question mark as the background image until the user answers the question.
         mPlayerView.setDefaultArtwork(BitmapFactory.decodeResource
                 (getResources(), R.drawable.question_mark));
